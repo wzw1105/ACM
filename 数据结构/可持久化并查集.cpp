@@ -1,3 +1,11 @@
+/*
+bzoj3674:
+1 a b 合并a,b所在集合
+2 k 回到第k次操作之后的状态(查询算作操作)
+3 a b 询问a,b是否属于同一集合，是则输出1否则输出0
+强制在线
+*/
+
 #include<iostream>
 #include<cstdio>
 #include<algorithm>
@@ -14,12 +22,10 @@ struct chairman_tree{
 	int dep[maxn*50];      //树深度
 	int ls[maxn*50],rs[maxn*50];
 	int roo[maxn];   //版本为i的根节点
-
 	chairman_tree(){
 		memset(fa,0,sizeof(fa));
 		cnt=tot=0;
 	}
-
 	int build(int l,int r){
 		int now=++cnt;
 		if(l==r) {
@@ -49,7 +55,6 @@ struct chairman_tree{
 		}
 		return now;
 	}
-
 	void unite(int a,int b){
 		tot++;
 		int faa=fin(a),fab=fin(b);  //faa，fab表示主席树id
@@ -59,25 +64,21 @@ struct chairman_tree{
 			else roo[tot]=modify(1,n,posb,posa,fab,faa,roo[tot-1]);
 		}else roo[tot]=roo[tot-1];
 	}
-
 	void go_old(int old){
 		tot++;
 		roo[tot]=roo[old];
 		return;
 	}
-
 	int query(int l,int r,int pos,int id)  {//根据数组下标找到id
 		if(l==r) return id;
 		int mid=(l+r)>>1;
 		if(pos<=mid) return query(l,mid,pos,ls[id]);
 		return query(mid+1,r,pos,rs[id]);
 	}
-
 	int same(int a,int b){
 		int faa=fin(a),fab=fin(b);
 		return point[faa]==point[fab]?1:0;
 	}
-
 	int fin(int pos){
 		int fath=query(1,n,pos,roo[tot-1]);
 		if(point[fath]==pos) return fath;
@@ -89,7 +90,6 @@ int main()
 {
 	scanf("%d %d",&n,&m);
 	tree.roo[0]=tree.build(1,n);
-
 	int ans=0;
 	for(int i=1;i<=m;i++){
 		scanf("%d",&type);

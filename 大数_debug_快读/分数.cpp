@@ -3,18 +3,12 @@
 using namespace std;
 #define inf 0x3f3f3f3f
 
-int gcd(int a,int b)
-{
-    return (b==0?a:gcd(b,a%b));
-}
+int gcd(int a,int b) {return (b==0?a:gcd(b,a%b));}
 
 //分母大于零，分子可小于零
 struct fenshu{
     int x,y;
-    fenshu(int a=0,int b=1) {
-        x=a;y=b;
-    }
-
+    fenshu(int a=0,int b=1) {x=a;y=b;}
     fenshu operator+(fenshu b) {
         int _gcd=gcd(y,b.y);
         fenshu res=fenshu(abs(x*(b.y/_gcd)+b.x*(y/_gcd)),abs(y*(b.y/_gcd)));
@@ -23,7 +17,6 @@ struct fenshu{
         if(b.y*x+y*b.x<0) res.x=-res.x;
         return res;
     }
-
     fenshu operator-(fenshu b) {
         int _gcd=gcd(y,b.y);
         fenshu res=fenshu(abs(x*(b.y/_gcd)-b.x*(y/_gcd)),abs(y*(b.y/_gcd)));
@@ -32,14 +25,12 @@ struct fenshu{
         if(b.y*x-y*b.x<0) res.x=-res.x;
         return res;
     }
-
     fenshu operator*(fenshu b) {
         fenshu res=fenshu(x*b.x,y*b.y);
         int _gcd=gcd(abs(res.x),abs(res.y));
         res.x/=_gcd;res.y/=_gcd;
         return res;
     }
-
     fenshu operator/(fenshu b) {
         if(b.y==0) {
             printf("error\n");
@@ -67,15 +58,9 @@ struct fenshu{
         int _gcd=gcd(a.y,b.y);
         return a.x*(b.y/_gcd)>b.x*(a.y/_gcd);
     }
-    friend bool operator==(const fenshu &a,const fenshu &b) {
-        return a.x==b.x&&a.y==b.y;
-    }
-    friend bool operator>=(const fenshu &a,const fenshu &b) {
-        return a>b||a==b;
-    }
-    friend bool operator<=(const fenshu&a,const fenshu &b) {
-        return a<b||a==b;
-    }
+    friend bool operator==(const fenshu &a,const fenshu &b) {return a.x==b.x&&a.y==b.y;}
+    friend bool operator>=(const fenshu &a,const fenshu &b) {return a>b||a==b;}
+    friend bool operator<=(const fenshu&a,const fenshu &b) {return a<b||a==b;}
     void print() {
         printf("%d/%d\n",x,y);
     }

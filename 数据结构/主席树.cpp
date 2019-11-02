@@ -61,8 +61,7 @@ namespace president_tree{
     }
 }using namespace president_tree;
 
-int main()
-{
+int main() {
     scanf("%d %d", &n, &q);
     for(int i = 1; i <= n; i++)scanf("%d", &a[i]);
     build_tree(a,n);

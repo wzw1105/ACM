@@ -2,7 +2,6 @@
 1. 区间加值
 2. 区间sum查询
 */
-
 #include<iostream>
 #include<cstdio>
 #include<cmath>
@@ -29,9 +28,12 @@ namespace blocking{
             }
             return;
         }
-        for(int i=l;i<=belong[l]*block;i++) sum[belong[i]]+=val,v[i]+=val;
-        for(int i=belong[l]+1;i<=belong[r]-1;i++) mark[i]+=val,sum[i]+=block*val;
-        for(int i=(belong[r]-1)*block+1;i<=r;i++) sum[belong[i]]+=val,v[i]+=val;
+        for(int i=l;i<=belong[l]*block;i++) 
+            sum[belong[i]]+=val,v[i]+=val;
+        for(int i=belong[l]+1;i<=belong[r]-1;i++) 
+            mark[i]+=val,sum[i]+=block*val;
+        for(int i=(belong[r]-1)*block+1;i<=r;i++) 
+            sum[belong[i]]+=val,v[i]+=val;
     }
 
     long long query(int l,int r) {
@@ -40,9 +42,12 @@ namespace blocking{
             for(int i=l;i<=r;i++) ans+=v[i]+mark[belong[i]];
             return ans;
         }
-        for(int i=l;i<=belong[l]*block;i++) ans+=v[i]+mark[belong[i]];
-        for(int i=belong[l]+1;i<=belong[r]-1;i++) ans+=sum[i];
-        for(int i=(belong[r]-1)*block+1;i<=r;i++) ans+=v[i]+mark[belong[i]];
+        for(int i=l;i<=belong[l]*block;i++) 
+            ans+=v[i]+mark[belong[i]];
+        for(int i=belong[l]+1;i<=belong[r]-1;i++) 
+            ans+=sum[i];
+        for(int i=(belong[r]-1)*block+1;i<=r;i++) 
+            ans+=v[i]+mark[belong[i]];
         return ans;
     }
 

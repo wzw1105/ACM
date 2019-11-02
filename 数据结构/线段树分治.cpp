@@ -23,9 +23,7 @@ namespace dsu{
         tot=0;
         for(int i=1;i<=k;i++) fa[i]=i,dep[i]=0;
     }
-    int find(int x) {
-        return fa[x]==x?x:find(fa[x]);
-    }
+    int find(int x) {return fa[x]==x?x:find(fa[x]);}
     void merge(int x,int y) {
         x=find(x),y=find(y);
         if(x==y) return;

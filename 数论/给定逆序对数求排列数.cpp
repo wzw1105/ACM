@@ -5,8 +5,7 @@ using namespace std;
 const int mod=10000;
 int dp[105][10005],m,n;
 
-int main()
-{
+int main() {
 	scanf("%d %d",&n,&m);
 	for(int i=1;i<=n;i++)dp[i][0]=1;
 	for(int i=2;i<=n;i++){

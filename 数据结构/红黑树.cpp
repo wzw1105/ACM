@@ -306,7 +306,6 @@ void redblacktree<T>::SolveDoubleRed(Node* nn) {
         }
     }
 }
-
 template <typename T>
 void redblacktree<T>::connect34(    Node* nroot,    Node* nls,      Node* nrs,
                                     Node* ntree1,   Node* ntree2,   Node* ntree3,   Node* ntree4) {
@@ -326,7 +325,6 @@ void redblacktree<T>::connect34(    Node* nroot,    Node* nls,      Node* nrs,
     nrs->maintain();
     nroot->maintain();
 }
-
 template <typename T>
 typename redblacktree<T>::iterator redblacktree<T>::pre(T v) {
     Node* ptn = _root;
@@ -339,7 +337,6 @@ typename redblacktree<T>::iterator redblacktree<T>::pre(T v) {
     else ptn = _hot->left_node();
     return iterator(ptn);
 }
-
 template <typename T>
 typename redblacktree<T>::iterator redblacktree<T>::next(T v) {
     Node* ptn = _root;
@@ -352,7 +349,6 @@ typename redblacktree<T>::iterator redblacktree<T>::next(T v) {
     else ptn = _hot->right_node();
     return iterator(ptn);
 }
-
 template <typename T>
 typename
 redblacktree<T>::iterator redblacktree<T>::kth(int rank) {
@@ -604,9 +600,7 @@ void redblacktree<T>::correctlyconnected() {
 }
 
 redblacktree<int> tree;
-
 int n,a,m,l,r,opt;
-
 int main()
 {
     scanf("%d",&m);

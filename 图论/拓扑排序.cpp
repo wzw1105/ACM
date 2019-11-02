@@ -22,8 +22,7 @@ bool toposort() {
 	return true;
 }
 
-int main()
-{
+int main() {
 	int t;scanf("%d",&t);
 	while(~scanf("%d %d",&n,&m)){
 		for(int i=1;i<=n;i++) vec[i].clear();

@@ -1,9 +1,6 @@
 #include<bits/stdc++.h>
-
 using namespace std;
-
-int main()
-{
+int main() {
 	tuple<int,double,string> t(654328,12.233232,"wzw1105"),b(654328,12.233231,"wll");
 	cout << get<2>(t) << ' ' <<get<0>(t) << ' ' << get<1>(t) << endl; 
 	cout << (t<b) << endl;

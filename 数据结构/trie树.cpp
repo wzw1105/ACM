@@ -5,9 +5,7 @@ using namespace std;
 #define sigma_size 26
 
 struct trie{
-	int ch[maxnode][sigma_size];
-	int val[maxnode];
-	int sz;
+	int ch[maxnode][sigma_size],val[maxnode],sz;
 	trie(){
 		memset(ch[0],0,sizeof(ch[0]));
 		memset(val,0,sizeof(val));
@@ -28,8 +26,3 @@ struct trie{
 		val[u]=v;
 	}
 };
-
-int main()
-{
-	
-}

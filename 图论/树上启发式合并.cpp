@@ -6,7 +6,6 @@
 
 using namespace std;
 const int maxn=100005;
-
 //题目数据
 int t,n,u,v,q,k,a[maxn],b[maxn],ans[maxn],cnt[maxn],sum,m;
 vector<int> vec[maxn];
@@ -41,13 +40,18 @@ void dfs(int cur,int fa,bool keep) {//keep表示以当前节点为根节点的�
         if(vec[cur][i]!=fa&&vec[cur][i]!=son[cur])
             dfs(vec[cur][i],cur,0);//计算轻链的结果，并且不保存
     }
-    if(son[cur]) dfs(son[cur],cur,1),vis[son[cur]]=1; //计算重儿子贡献，并打上标记，防止下一次calc的时候重复计算
-    calc(cur,fa,1);//计算当前节点和所有以轻儿子为根节点的子树的贡献
-    ans[cur]=sum;  //这里就计算好了整颗以当前节点为根节点的子树的贡献
-    if(son[cur]) vis[son[cur]]=0;  //消除标记，防止对下一步的清空操作产生影响，因为如果当前节点是轻儿子的话，那么整颗以
- 							//当前节点为根节点的子树的贡献都要清空，如果不把重儿子的标记去掉，那么以重儿子为根的
- 							//子树的贡献就无法在下一步清空
-    if(!keep) calc(cur,fa,-1);  //如果当前节点作为父节点的轻儿子，那么消除以当前节点为根节点的子树的影响
+    //计算重儿子贡献，并打上标记，防止下一次calc的时候重复计算
+    if(son[cur]) dfs(son[cur],cur,1),vis[son[cur]]=1; 
+    //计算当前节点和所有以轻儿子为根节点的子树的贡献
+    calc(cur,fa,1);
+    //这里就计算好了整颗以当前节点为根节点的子树的贡献
+    ans[cur]=sum;  
+    /*消除标记，防止对下一步的清空操作产生影响，因为如果当前节点是轻儿子的话，那么整颗以
+ 	当前节点为根节点的子树的贡献都要清空，如果不把重儿子的标记去掉，那么以重儿子为根的
+ 	子树的贡献就无法在下一步清空*/
+    if(son[cur]) vis[son[cur]]=0;  
+    //如果当前节点作为父节点的轻儿子，那么消除以当前节点为根节点的子树的影响
+    if(!keep) calc(cur,fa,-1);  
 }
 
 void init() {

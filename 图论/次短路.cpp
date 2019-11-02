@@ -3,29 +3,21 @@
 #include<algorithm>
 #include<queue>
 #include<cstring>
-
 using namespace std;
+
 const int maxn=5005;
 const int inf=0x3f3f3f3f;
 int dis1[maxn],dis2[maxn],u,v,w,n,m;
-
 struct node{
 	int pos,w;
-	node(int a=0,int b=0){
-		pos=a;w=b;
-	}
-	friend bool operator<(const node&a,const node &b){
-		return a.w>b.w;
-	}
+	node(int a=0,int b=0) {pos=a;w=b;}
+	friend bool operator<(const node&a,const node &b) {return a.w>b.w;}
 };
-
 vector<node> vec[maxn];
-
 void add_edge(int a,int b,int c) {
 	vec[a].push_back(node(b,c));
 	vec[b].push_back(node(a,c));
 } 
- 
 void dijkstra2(int s,int to) {
 	priority_queue<node> que;
 	memset(dis1,0x3f,sizeof(dis1));
@@ -50,9 +42,7 @@ void dijkstra2(int s,int to) {
 	printf("%d\n",dis2[to]);
 	
 }
-
-int main()
-{
+int main() {
 	scanf("%d %d",&n,&m);
 	for(int i=1;i<=m;i++){
 		scanf("%d %d %d",&u,&v,&w);

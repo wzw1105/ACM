@@ -26,8 +26,7 @@ void dijkstra(int s) {
 	printf("%d\n",dis[n]);
 }
 
-int main()
-{
+int main() {
 	scanf("%d %d",&n,&m);
 	for(int i=1;i<=m;i++){
 		scanf("%d %d %d",&u,&v,&w);

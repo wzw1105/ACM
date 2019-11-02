@@ -28,13 +28,11 @@ struct Linear_Basis{
 		for(int i=0;i<=62;i++) if(a[i]) return a[i];
 		return 0;
 	}
-	void rebuild()
-    {
+	void rebuild() {
         for(int i=62;i>=0;i--) for(int j=i-1;j>=0;j--) if(a[i]&(1LL<<j)) a[i]^=a[j];
         for(int i=0;i<=62;i++) if(a[i]) b[tot++]=a[i];
     }
-    long long query(long long k)
-    {
+    long long query(long long k) {
         long long ret=0;
         if (k>=(1LL<<tot)) return -1;
         for (int i=62;i>=0;i--) if(k&(1LL<<i)) ret^=b[i];
@@ -51,8 +49,7 @@ struct Linear_Basis{
 int n;
 long long a[55];
 
-int main()
-{
+int main() {
 	scanf("%d",&n);
 	for(int i=1;i<=n;i++){
 		scanf("%lld",&a[i]);
@@ -60,6 +57,5 @@ int main()
 	}
 	long long t;lb.rebuild();
 	while(~scanf("%lld",&t)) printf("%lld\n",lb.query(t));
-	
 	printf("%lld\n",lb.query_max());
 }

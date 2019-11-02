@@ -65,12 +65,12 @@ void debug(int *(*a),int n,int m)
 #define rep(i,a,b) for(int i=(a);i>=(b);i--)
 #define pi acos(-1.0)
 #define inf 0x3f3f3f3f
+
+typedef long long ll;
 #define Rand() (rand()|rand()<<15)
 #define Srand() srand(time(0)^(unsigned)(unsigned long long)(new char))
 #define typemax(type)   numeric_limits<type>::max()
 #define typemin(type)   numeric_limits<type>::min()
-typedef long long ll;
-
 #define bg1(x) cout<<(#x)<<":"<<(x)<<" "<<endl
 #define bg2(x,y) cout<<(#x)<<":"<<(x)<<" "<<(#y)<<":"<<(y)<<" "<<endl
 #define bg3(x,y,z) cout<<(#x)<<":"<<(x)<<" "<<(#y)<<":"<<(y)<<" "<<(#z)<<":"<<(z)<<" "<<endl

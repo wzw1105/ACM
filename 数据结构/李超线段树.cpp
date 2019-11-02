@@ -1,3 +1,8 @@
+/*
+Project S P:第一项值为S,斜率为P
+Query T:这些直线在第T天（即x=T时的最高点）的最大值
+注意答案整除100
+*/
 #include<bits/stdc++.h>
 
 using namespace std;
@@ -13,7 +18,7 @@ struct line{
 	}
 }seg[maxn<<2];
 
-struct segment_tree{
+namespace segment_tree{
 	inline double calc(line l1,int pos) {return l1.k*pos+l1.b;}  //kx+b
 	inline int cross(line l1,line l2) {return floor((l1.b-l2.b)/(l2.k-l1.k));}  //l1 l2交点
 
@@ -52,7 +57,8 @@ struct segment_tree{
 		else res=max(res,query(mid+1,ri,id<<1|1,pos));
 		return res;
 	}
-}tree;
+}
+using namespace segment_tree;
 
 int n,pos,l,r;
 char opt[100];
@@ -60,14 +66,14 @@ double k,b;
 
 int main()
 {
-	scanf("%d",&n);tree.insert(1,50000,1,line(0,0,1,50000,1));
+	scanf("%d",&n);insert(1,50000,1,line(0,0,1,50000,1));
 	while(n--){
 		scanf("%s",opt+1);
 		if(opt[1]=='P'){
 			scanf("%lf %lf",&b,&k);
-			tree.insert(1,50000,1,line(k,b-k,1,50000,1));
+			insert(1,50000,1,line(k,b-k,1,50000,1));
 		}else{
-			scanf("%d",&pos);double res=tree.query(1,50000,1,pos);
+			scanf("%d",&pos);double res=query(1,50000,1,pos);
 			printf("%d\n",(int)floor(res/100));
 		}
 	}

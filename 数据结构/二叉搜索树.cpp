@@ -5,13 +5,8 @@ const int maxn=1e5+10;
 
 struct binary_tree{
 	int tot,roo;
-	binary_tree(){
-		tot=0;
-	}
-	struct data{
-		int ls,rs,val;
-	}node[maxn*20];
-
+	binary_tree() {tot=0;}
+	struct data {int ls,rs,val;}node[maxn*20];
 	void insert(int k,int id){
 		if(node[id].val==k) return;
 		if(!tot) {
@@ -19,7 +14,6 @@ struct binary_tree{
 			roo=tot;
 			return;
 		}
-
 		if(k<=node[id].val){
 			if(!node[id].ls) {
 				node[id].ls=++tot;
@@ -45,9 +39,7 @@ struct binary_tree{
 }tree;
 
 int n,a;
-
-int main()
-{
+int main() {
 	scanf("%d",&n);
 	for(int i=1;i<=n;i++) scanf("%d",&a),tree.insert(a,tree.roo);
 	tree.mid_visit(1,0);puts("");

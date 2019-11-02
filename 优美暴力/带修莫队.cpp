@@ -4,12 +4,19 @@ using namespace std;
 const int maxn=10005;      // max node
 const int maxm=10005;      // max operate/query
 const int max_col=1000005; // max color
-
+/*
+color临时存每个位置的颜色
+numq:number of query   numo:number of operate
+num:每个颜色的数量
+res:当前区间答案
+id:id-th query 
+change:number of change before him    
+*/
 int ans[maxm],a[maxn]; //a:initial cilor
-int block_size,block[maxn],numq,numo,color[maxn],num[max_col],res;              //color临时存每个位置的颜色
-struct query{                                                                   //numq:number of query   numo:number of operate
-    int id,l,r,change;   //id:id-th query change:number of change before him    //num:每个颜色的数量
-    query(int a=0,int b=0,int c=0,int d=0) {                                    //res:当前区间答案
+int block_size,block[maxn],numq,numo,color[maxn],num[max_col],res;       
+struct query{                                                                  
+    int id,l,r,change;   //
+    query(int a=0,int b=0,int c=0,int d=0) {                                   
         id=a;l=b;r=c;change=d;
     }
     friend bool operator<(const query&a,const query&b){
@@ -26,15 +33,13 @@ struct operate{
     }
 }o[maxm];
 
-void init(int n)
-{
+void init(int n) {
     numq=numo=0;
     block_size=(int)pow(n,2.0/3);
     for(int i=1;i<=n;i++) block[i]=i/block_size;
 }
 
-void add_change(int id,int l,int r)
-{
+void add_change(int id,int l,int r) {
     if(o[id].pos>=l&&o[id].pos<=r) {
         if(--num[a[o[id].pos]]==0) res--;
         if(++num[o[id].nxt]==1) res++;
@@ -42,8 +47,7 @@ void add_change(int id,int l,int r)
     a[o[id].pos]=o[id].nxt;
 }
 
-void del_change(int id,int l,int r)
-{
+void del_change(int id,int l,int r) {
     if(o[id].pos>=l&&o[id].pos<=r) {
         if(--num[a[o[id].pos]]==0) res--;
         if(++num[o[id].pre]==1) res++;
@@ -51,18 +55,9 @@ void del_change(int id,int l,int r)
     a[o[id].pos]=o[id].pre;
 }
 
-void add(int id)
-{
-    if(++num[a[id]]==1) res++;
-}
-
-void del(int id)
-{
-    if(--num[a[id]]==0) res--;
-}
-
-void mo_dui()
-{
+void add(int id) {if(++num[a[id]]==1) res++;}
+void del(int id) {if(--num[a[id]]==0) res--;}
+void mo_dui() {
     int l=1,r=0,k=0;  //k为前缀修改数量
     for(int i=1;i<=numq;i++) {
         while(k<q[i].change) add_change(++k,l,r);
@@ -77,8 +72,7 @@ void mo_dui()
 
 int n,m,x,y;
 char opt[10];
-int main()
-{
+int main() {
     scanf("%d %d",&n,&m);init(n);
     for(int i=1;i<=n;i++) scanf("%d",&a[i]),color[i]=a[i];
     for(int i=1;i<=m;i++) {

@@ -1,8 +1,6 @@
 #include<bits/stdc++.h>
-
 using namespace std;
 const int maxn=55;
-
 int m,n,a[maxn][maxn],x[maxn];
 bool fre[maxn]; //自由元
 

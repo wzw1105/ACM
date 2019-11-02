@@ -1,9 +1,9 @@
+//给一个图，判断是否是是一棵树
 #include<iostream>
 #include<cstdio>
 #include<algorithm>
 #include<cstring>
 #include<set>
-
 using namespace std;
 const int maxn=200005;
 set<int> s;
@@ -16,29 +16,21 @@ struct node{
 	}
 }edge[maxn];
 
-void init()
-{	
+void init(){	
 	memset(dep,0,sizeof(dep));
 	memset(ru,0,sizeof(ru));
 	s.clear();tot=0;n=0;
 }
 
-int fin(int u)
-{
-	return fa[u]==u?u:fin(fa[u]);
-}
-
-void merge(int u,int v)
-{
+int fin(int u) {return fa[u]==u?u:fin(fa[u]);}
+void merge(int u,int v) {
 	int x=fin(u),y=fin(v);
 	if(dep[x]<=dep[y]){
 		fa[x]=fa[y];
 		if(dep[x]==dep[y]) dep[y]++;
 	}else fa[y]=fa[x];
 }
-
-int main()
-{
+int main() {
 	for(int cas=1;;cas++){
 		init();
 		while(true){
@@ -53,12 +45,10 @@ int main()
 				s.insert(v);
 			}
 		}
-
 		//判断是否有入度>1
 		bool flag=true;
 		for(int i=1;i<=n;i++) if(ru[i]>=2) {flag=false;break;}
 		if(!flag) {printf("Case %d is not a tree.\n",cas);continue;}
-
 		//判断是否成环
 		for(int i=1;i<=n;i++) fa[i]=i;
 		for(int i=1;i<=tot;i++){
@@ -66,7 +56,6 @@ int main()
 			if(x==y) {flag=false;break;}
 			else merge(edge[i].u,edge[i].v);
 		}
-
 		//判断是否有森林
 		int tot=0;
 		for(set<int>::iterator it=s.begin();it!=s.end();it++) {
@@ -74,8 +63,6 @@ int main()
 			if(fa[i]==i) tot++;
 		}
 		if(tot>1) flag=false;
-
-
 		if(flag) printf("Case %d is a tree.\n",cas);
 		else printf("Case %d is not a tree.\n",cas);
 	}

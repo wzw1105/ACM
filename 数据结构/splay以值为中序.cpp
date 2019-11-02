@@ -1,5 +1,13 @@
+/*
+洛谷P3369:
+1.插入x数
+2.删除x数(若有多个相同的数，因只删除一个)
+3.查询x数的排名(排名定义为比当前数小的数的个数+1。若有多个相同的数，因输出最小的排名)
+4.查询排名为x的数
+5.求x的前驱(前驱定义为小于x，且最大的数)
+6.求x的后继(后继定义为大于x，且最小的数)
+*/
 #include<bits/stdc++.h>
-
 using namespace std;
 #define inf 0x3f3f3f3f
 const int maxn=2e5+10;
@@ -11,20 +19,12 @@ struct splay_tree{
         root=0;
         insert(-inf);insert(inf);  //插入两个边界的数方便区间翻转和元素删除操作
     }
-
-    int dir(int x){
-        return ch[fa[x]][1]==x;
-    }
-
+    int dir(int x) {return ch[fa[x]][1]==x;}
     void pushup(int x){
         siz[x]=cnt[x];
         if(ch[x][0]) siz[x]+=siz[ch[x][0]];
         if(ch[x][1]) siz[x]+=siz[ch[x][1]];
     }
-
-    void down(int x){ //只写了mark的第一维：翻转标记
-    }
-
     void rotate(int x){
         int y=fa[x],z=fa[y],k=dir(x);
         ch[y][k]=ch[x][k^1];fa[ch[x][k^1]]=y;
@@ -32,7 +32,6 @@ struct splay_tree{
         ch[x][k^1]=y;fa[y]=x;
         pushup(y);pushup(x);
     }
-
     void splay(int x,int goal=0){
         while(fa[x]!=goal){
             int y=fa[x],z=fa[y];
@@ -44,7 +43,6 @@ struct splay_tree{
         }
         if(!goal) root=x;
     }
-
     void insert(int x){  //x 为插入的位置，x为插入的值
         int cur=root,pre=0;
         while(cur&&val[cur]!=x) pre=cur,cur=ch[cur][x>val[cur]];
@@ -57,11 +55,9 @@ struct splay_tree{
         }
         splay(cur); //splay到根节点，保持树平衡
     }
-
     int kth(int x){  //返回第x大,返回的是下标
         int cur=root;
         while(true){
-            down(cur);
             if(ch[cur][0]&&x<=siz[ch[cur][0]]){
                 cur=ch[cur][0];
             }else if(x>siz[ch[cur][0]]+cnt[cur]){
@@ -70,7 +66,6 @@ struct splay_tree{
             }else return cur;  
         }
     }
-
     int rank(int x){
         int ans=0,now=root;
         while(true){
@@ -89,7 +84,6 @@ struct splay_tree{
         if(now) splay(now);
         return ans;
     }
-
     int pre(int x){ //前驱，即小于x的最大的数，返回下标
         int now=root,res=-inf-1,node;
         while(now){
@@ -99,7 +93,6 @@ struct splay_tree{
         }
         return node;
     }
-
     int next(int x){ //后继，即大于x的最小的数
         int now=root,res=inf+1,node;
         while(now){
@@ -109,7 +102,6 @@ struct splay_tree{
         }
         return node;
     }
-
     void erase(int x){  //erase的是值，即val
         int cur=pre(x),rson=next(x);
         splay(cur);splay(rson,root);
@@ -120,9 +112,7 @@ struct splay_tree{
         else ch[rson][0]=0;
         pushup(rson);pushup(root);
     }
-
     void mid_visit(int cur){ //中序遍历
-        down(cur);
         if(ch[cur][0]) mid_visit(ch[cur][0]);
         if(val[cur]!=-inf&&val[cur]!=inf)printf("%d ",val[cur]);
         if(ch[cur][1]) mid_visit(ch[cur][1]);
@@ -130,9 +120,7 @@ struct splay_tree{
 }tree;
 
 int n,a,m,l,r,opt;
-
-int main()
-{
+int main() {
     scanf("%d",&m);
     for(int i=1;i<=m;i++){
         scanf("%d %d",&opt,&a);

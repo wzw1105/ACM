@@ -1,5 +1,13 @@
-#include<bits/stdc++.h>
+/*
+bzoj3938
+n个机器人在x轴上，给你所有机器人初始(0时刻)位置静止，然后给定两种操作，一个是让某个机器人以
+一定的速度开始运动，另一个操作是查询某个时刻距离原点最远的机器人的距离
+ti query:询问时刻ti距离原点最远的机器人
+ti command ki xi:ti时刻将第ki个机器人的速度改为xi
+ti按照输入递增
+*/
 
+#include<bits/stdc++.h>
 using namespace std;
 const int maxn=2e5+10;
 #define eps 1e-9
