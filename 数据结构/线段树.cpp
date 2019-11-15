@@ -4,7 +4,7 @@ using namespace std;
 const int maxn=2e5+10;
 
 int n,q,l,r,opt;
-long long a[maxn],mark[maxn],minn[maxn],maxx[maxn];
+long long a[maxn],mark[maxn<<2],minn[maxn<<2],maxx[maxn<<2];
 
 void pushup(int id) {
 	minn[id]=min(minn[id<<1],minn[id<<1|1]);

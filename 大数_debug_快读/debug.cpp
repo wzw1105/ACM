@@ -1,4 +1,6 @@
 #pragma comment(linker,"/STACK:102400000,102400000")
+#pragma GCC optimize("Ofast,no-stack-protector,unroll-loops,fast-math,O3")
+#pragma GCC target("avx,avx2,fma")
 #pragma GCC optimize(2)
 #pragma GCC optimize(3)
 #pragma GCC optimize ("Ofast")
@@ -86,11 +88,13 @@ template<typename E> E quick_pow(E a,E b,E c){E ans=1;while(b){if(b&1) ans=ans*a
 template<typename E> E inv1(E a,E b){return quick_pow(a,b-2,b);}
 template<typename E> E inv2(E a,E b){E x,y;ex_gcd(a,b,x,y);return (x%b+b)%b;}
 /*---------------------------------------previous use---------------------------------------------*/
+mt19937 rnd(chrono::steady_clock::now().time_since_epoch().count());
 
 int main()
 {
 	freopen("/Users/wzw/Desktop/ACM/1.in","r",stdin);
 	long long n;
+	shuffle(m, m+a, rnd);
 	read(n);
 	write(n);
 }
