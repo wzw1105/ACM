@@ -27,6 +27,7 @@ namespace ex_kmp{
 	void exkmp(char s[],char t[],int n,int m) {
 		int pos=1;
 		getnext(t,m);
+		extend[1]=0;
 		for(int i=1;i<=m && i<=n && s[i]==t[i];i++,extend[1]++);
 		for(int i=2;i<=n;i++) {
 			if(i+nxt[i-pos+1]-1 < pos+extend[pos]-1) extend[i]=nxt[i-pos+1];
